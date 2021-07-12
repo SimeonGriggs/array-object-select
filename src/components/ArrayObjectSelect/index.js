@@ -170,7 +170,7 @@ const ArrayObjectSelect = React.forwardRef((props, ref) => {
           {type?.of?.length > 0 &&
             type.of.map((field) => {
               return (
-                <>
+                <React.Fragment key={field.name}>
                   {/* Sets the 'current' item state, does not modify the document */}
                   <Autocomplete
                     fontSize={[2, 2, 3]}
@@ -238,7 +238,7 @@ const ArrayObjectSelect = React.forwardRef((props, ref) => {
                     value
                       .filter((fieldValue) => fieldValue._key === currentOption)
                       .map((fieldValue, i) => (
-                        <>
+                        <React.Fragment key={fieldValue._key}>
                           {editOpen && (
                             <Dialog
                               onClose={() => setEditOpen(false)}
@@ -267,17 +267,17 @@ const ArrayObjectSelect = React.forwardRef((props, ref) => {
                               </Card>
                             </Dialog>
                           )}
-                        </>
+                        </React.Fragment>
                       ))}
-                </>
+                </React.Fragment>
               );
             })}
         </Stack>
       </FormField>
-      <Card paddingTop={4}>
+      {/* <Card paddingTop={4}>
         <Text size={1}>Debug: Current Field Value</Text>
         <pre>{JSON.stringify(value, null, 2)}</pre>
-      </Card>
+      </Card> */}
     </>
   );
 });
